@@ -60,32 +60,32 @@ CREATE TABLE imagens (
     FOREIGN KEY (modelo_id) REFERENCES modelos_calcado(id) ON DELETE CASCADE
 );
 
--- CREATE TABLE pedidos (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     cliente_id INT NOT NULL,
---     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
---     valor_total DECIMAL(10, 2) NOT NULL,
---     status_pagamento VARCHAR(50) DEFAULT 'pendente',
---     metodo_pagamento VARCHAR(50),
---     psp_id VARCHAR(255),
---     logradouro_entrega VARCHAR(255) NOT NULL,
---     numero_entrega VARCHAR(20) NOT NULL,
---     bairro_entrega VARCHAR(100) NOT NULL,
---     cidade_entrega VARCHAR(100) NOT NULL,
---     uf_entrega CHAR(2) NOT NULL,
---     cep_entrega VARCHAR(9) NOT NULL,
---     FOREIGN KEY (cliente_id) REFERENCES clientes(id)
--- );
+CREATE TABLE pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cliente_id INT NOT NULL,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    valor_total DECIMAL(10, 2) NOT NULL,
+    status_pagamento VARCHAR(50) DEFAULT 'pendente',
+    metodo_pagamento VARCHAR(50),
+    psp_id VARCHAR(255),
+    logradouro_entrega VARCHAR(255) NOT NULL,
+    numero_entrega VARCHAR(20) NOT NULL,
+    bairro_entrega VARCHAR(100) NOT NULL,
+    cidade_entrega VARCHAR(100) NOT NULL,
+    uf_entrega CHAR(2) NOT NULL,
+    cep_entrega VARCHAR(9) NOT NULL,
+    FOREIGN KEY (cliente_id) REFERENCES usuarios(id)
+);
 
--- CREATE TABLE pedidos_itens (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     pedido_id INT NOT NULL,
---     variacao_id INT NOT NULL,
---     quantidade INT NOT NULL,
---     preco_unitario DECIMAL(10, 2) NOT NULL,
---     FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
---     FOREIGN KEY (variacao_id) REFERENCES variacoes_calcado(id)
--- );
+CREATE TABLE pedidos_itens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT NOT NULL,
+    variacao_id INT NOT NULL,
+    quantidade INT NOT NULL,
+    preco_unitario DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
+    FOREIGN KEY (variacao_id) REFERENCES variacoes_calcado(id)
+);
 
 CREATE TABLE logs (
     id INT AUTO_INCREMENT PRIMARY KEY,
