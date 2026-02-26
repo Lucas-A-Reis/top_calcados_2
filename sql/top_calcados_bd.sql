@@ -9,7 +9,6 @@ CREATE TABLE usuarios (
     telefone VARCHAR(20),
     codigo_2fa VARCHAR(6) NULL,
     expiracao_2fa DATETIME NULL,
-    status TINYINT(1) DEFAULT 1,
     tipo VARCHAR(8)
 );
 
