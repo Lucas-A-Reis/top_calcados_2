@@ -7,7 +7,19 @@ class Usuario {
     private string $nome;
     private string $email;
     private string $senha;
-    private ?string $telefone = null;
+    private string $telefone;
+
+
+    // --- CONSTRUTOR ---
+
+    public function __construct($id = null, $nome, $email, $senha, $telefone)
+    {
+        $this->id = $id;
+        $this->nome = $nome;
+        $this->email = $email;
+        $this->senha = $senha;
+        $this->telefone = $telefone;
+    }
 
     // --- GETTERS ---
     public function getId(): ?int { return $this->id; }
