@@ -40,3 +40,12 @@ function sanitizar($valor, $tipo, $substrato_do_numero = null)
             return filter_var($valor, FILTER_SANITIZE_SPECIAL_CHARS);
     }
 }
+
+function validarCaptcha()
+{
+    $token = $_POST['g-recaptcha-response'];
+    $chave = $_ENV['RECAPTCHA_SECRET_KEY'];
+    $url = "https://www.google.com/recaptcha/api/siteverify?secret=$chave&response=$token";
+    $resposta = file_get_contents($url);
+    $atributos = json_decode($resposta, true);
+}

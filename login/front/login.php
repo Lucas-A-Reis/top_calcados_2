@@ -14,6 +14,7 @@ require_once '../../src/database/conecta.php';
     <title>Top Calçados - Login</title>
     <link rel="stylesheet" href="">
     <?php include '../../includes/outros/favicons.html' ?>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -61,6 +62,9 @@ require_once '../../src/database/conecta.php';
                     <label for="senha">Senha</label>
                     <input type="password" id="senha" name="senha" placeholder="Crie uma senha segura" required minlength="8">
                 </div>
+
+                <div class="g-recaptcha" data-sitekey="6Lc5y00sAAAAAMd6mkoAdncVd3Tihd1SYT8VGgnV
+"></div>
 
                 <button type="submit" class="btn_acessar">Finalizar Cadastro</button>
             </form>
