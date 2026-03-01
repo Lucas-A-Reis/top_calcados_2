@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Models;
-
 class Usuario {
     private ?int $id = null;
     private string $nome;

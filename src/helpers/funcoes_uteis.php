@@ -28,8 +28,8 @@ function sanitizar($valor, $tipo, $substrato_do_numero = null)
 
         case 'int':
             $int_limpo = filter_var($valor, FILTER_SANITIZE_NUMBER_INT);
-            if (!filter_var($int_limpo, FILTER_VALIDATE_INT) && $valor !== "0"){
-                throw new AppException( $substrato_do_numero.' informado não é um número decimal válido', 'warning');
+            if (!filter_var($int_limpo, FILTER_VALIDATE_INT) && $valor !== "0") {
+                throw new AppException($substrato_do_numero . ' informado não é um número decimal válido', 'warning');
             }
             return (int)$int_limpo;
 
@@ -45,7 +45,30 @@ function validarCaptcha()
 {
     $token = $_POST['g-recaptcha-response'];
     $chave = $_ENV['RECAPTCHA_SECRET_KEY'];
+
+    if (empty($token)) {
+        throw new AppException('É necessário preencher o captcha para prosseguir', 'warning', 422);
+    }
+
     $url = "https://www.google.com/recaptcha/api/siteverify?secret=$chave&response=$token";
     $resposta = file_get_contents($url);
     $atributos = json_decode($resposta, true);
+
+    if (!$atributos || !$atributos['success']) {
+        throw new AppException('Houve um erro ao verificar o captcha, tente novamente.', 'error');
+    }
+}
+
+function DarRetornoDoBackend($code, $log, $status, $title, $message, $redirect){
+
+    header('Content-Type: application/json');
+    http_response_code($code);
+    error_log($log);
+    echo json_encode([
+        "status" => $status,
+        "title" => $title,
+        "message" => $message,
+        "redirect" => $redirect
+    ]);
+    exit;
 }
