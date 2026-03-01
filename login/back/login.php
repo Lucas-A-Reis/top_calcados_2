@@ -6,7 +6,6 @@ require_once '../../src/database/conecta.php';
 require_once '../../src/helpers/funcoes_uteis.php';
 require_once '../../src/services/usuarioServico.php';
 
-header('Content-Type: application/json');
 
 try {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -31,32 +30,12 @@ try {
     $_SESSION['usuario_id'] = $dados_do_usuario['id'];
     $_SESSION['usuario_nome'] = $dados_do_usuario['nome'];
 
-    echo json_encode([
-        "status" => "success",
-        "title" => "Bem-vindo!",
-        "message" => "Login realizado com sucesso. Redirecionando...",
-        "redirect" => "area_do_usuario.php"
-    ]);
+    DarRetornoDoBackend(200, null, "success", "Bem-vindo!", "Login realizado com sucesso. Redirecionando...", "area_do_usuario.php");
+
 } catch (AppException $e) {
-    http_response_code($e->getCode());
-    echo json_encode([
-        "status" => $e->getType(),
-        "title" => "Atenção",
-        "message" => $e->getMessage()
-    ]);
+    DarRetornoDoBackend($e->getCode(), null, $e->getType(), "Atenção!", $e->getMessage(), null);
 } catch (PDOException $e) {
-    http_response_code(500);
-    error_log("Erro de Login (BD): " . $e->getMessage());
-    echo json_encode([
-        "status" => "error",
-        "title" => "Erro Técnico",
-        "message" => "Instabilidade no servidor. Tente novamente em instantes."
-    ]);
+    DarRetornoDoBackend(500, "Erro ao consultar o banco de dados :".$e->getMessage(), "error", "Erro Técnico", "Instabilidade no servidor, tente novamente mais tarde.", null);
 } catch (Throwable $e) {
-    http_response_code(500);
-    echo json_encode([
-        "status" => "error",
-        "title" => "Erro Inesperado",
-        "message" => "Algo deu errado no processamento."
-    ]);
+    DarRetornoDoBackend(500, $e->getMessage(), "error", "Erro Desconhecido", "Houve um erro inesperado, tente novamente mais tarde.", null);
 }

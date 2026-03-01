@@ -24,7 +24,7 @@ try {
 } catch (AppException $e) {
     DarRetornoDoBackend($e->getCode(), null, $e->getType(), "Atenção!", $e->getMessage(), null);
 } catch (PDOException $e) {
-    DarRetornoDoBackend(500, "Erro ao cadastrar no banco de dados: ".$e->getMessage(), "error", "Erro Técnico", "Instabilidade no servidor, tente novamente mais tarde", null);
+    DarRetornoDoBackend(500, "Erro ao cadastrar no banco de dados: ".$e->getMessage(), "error", "Erro Técnico", "Instabilidade no servidor, tente novamente mais tarde.", null);
 } catch (Throwable $e){
-    DarRetornoDoBackend(500, $e->getMessage(), "error", "Erro Desconhecido", "Houve um erro inesperado, tente novamente mais tarde", null);
+    DarRetornoDoBackend(500, $e->getMessage(), "error", "Erro Desconhecido", "Houve um erro inesperado, tente novamente mais tarde.", null);
 }
