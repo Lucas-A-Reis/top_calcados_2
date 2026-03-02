@@ -59,11 +59,12 @@ function validarCaptcha()
     }
 }
 
-function DarRetornoDoBackend($code, $log, $status, $title, $message, $redirect){
+function DarRetornoDoBackend($code, $log, $status, $message, $redirect){
 
     header('Content-Type: application/json');
     http_response_code($code);
     error_log($log);
+    if ($code >= 500): $title = "Erro Técnico"; elseif ($code >= 400): $title = "Atenção!"; else: $title = "Sucesso!"; endif;
     echo json_encode([
         "status" => $status,
         "title" => $title,

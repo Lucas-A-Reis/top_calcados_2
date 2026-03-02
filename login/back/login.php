@@ -21,7 +21,7 @@ try {
 
     $dados_do_usuario = buscarUsuarioPorEmail($pdo, $email);
 
-    if (!$dados_do_usuario || !password_verify($senha, $dados_do_usuario['senha'])) {
+    if (!password_verify($senha, $dados_do_usuario['senha'])) {
         throw new AppException("E-mail ou senha incorretos.", "warning", 401);
     }
 
@@ -30,12 +30,12 @@ try {
     $_SESSION['usuario_id'] = $dados_do_usuario['id'];
     $_SESSION['usuario_nome'] = $dados_do_usuario['nome'];
 
-    DarRetornoDoBackend(200, null, "success", "Bem-vindo!", "Login realizado com sucesso. Redirecionando...", "/../front/area_do_usuario.php");
+    DarRetornoDoBackend(200, null, "success", "Login realizado com sucesso. Redirecionando...", "/../front/area_do_usuario.php");
 
 } catch (AppException $e) {
-    DarRetornoDoBackend($e->getCode(), null, $e->getType(), "Atenção!", $e->getMessage(), null);
+    DarRetornoDoBackend($e->getCode(), null, $e->getType(), $e->getMessage(), null);
 } catch (PDOException $e) {
-    DarRetornoDoBackend(500, "Erro ao consultar o banco de dados :".$e->getMessage(), "error", "Erro Técnico", "Instabilidade no servidor, tente novamente mais tarde.", null);
+    DarRetornoDoBackend(500, "Erro ao consultar o banco de dados :".$e->getMessage(), "error",  "Instabilidade no servidor, tente novamente mais tarde.", null);
 } catch (Throwable $e) {
-    DarRetornoDoBackend(500, $e->getMessage(), "error", "Erro Desconhecido", "Houve um erro inesperado, tente novamente mais tarde.", null);
+    DarRetornoDoBackend(500, $e->getMessage(), "error", "Houve um erro inesperado, tente novamente mais tarde.", null);
 }
