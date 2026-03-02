@@ -38,7 +38,7 @@ function inserirUsuario($pdo, Usuario $usuario)
         $stmt->execute();
     } catch (PDOException $e) {
         if ($e->getCode() == 23000 && strpos($e->getMessage(), 'email') !== false) {
-            throw new AppException("Parece que o e-mail fornecido já está cadastrado no sistema, tente novamente com outro endereço de e-mail", "warning", 422);
+            throw new AppException("Parece que o e-mail fornecido já foi cadastrado, faça login ou tente novamente com outro endereço de e-mail", "warning", 422);
         } else {
             throw new PDOException("Erro ao cadastrar no banco de dados: " . $e->getMessage());
         }

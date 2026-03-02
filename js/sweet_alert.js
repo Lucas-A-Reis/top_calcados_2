@@ -17,7 +17,11 @@ fetch(this.action, {
     .then(() => {
         if (data.redirect) {
             window.location.href = data.redirect;
-        }     
+        } else {
+            if (typeof grecaptcha !== 'undefined') {
+                grecaptcha.reset();
+            }
+        }    
     })
 })
 .catch(error => {
