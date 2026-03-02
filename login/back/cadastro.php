@@ -15,7 +15,7 @@ try {
 
     validarCaptcha();
 
-    $usuario = new Usuario(null, $_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['telefone']);
+    $usuario = new Usuario(null, sanitizar($_POST['nome'], 'string'), sanitizar($_POST['email'], 'email'), sanitizar($_POST['senha'], 'none'), sanitizar($_POST['telefone'], 'telefone'));
 
     inserirUsuario($pdo, $usuario);
 
