@@ -19,12 +19,12 @@ try {
 
     inserirUsuario($pdo, $usuario);
 
-    DarRetornoDoBackend(200, null, "success", "Bem-vindo!", "Cadastro realizado com sucesso. Redirecionando...", "area_do_usuario.php");
+    DarRetornoDoBackend(200, null, "success", "Bem-vindo!", "Cadastro realizado com sucesso. Redirecionando...", "/../front/area_do_usuario.php");
 
 } catch (AppException $e) {
-    DarRetornoDoBackend($e->getCode(), null, $e->getType(), "Atenção!", $e->getMessage(), null);
-} catch (PDOException $e) {
-    DarRetornoDoBackend(500, "Erro ao cadastrar no banco de dados: ".$e->getMessage(), "error", "Erro Técnico", "Instabilidade no servidor, tente novamente mais tarde.", null);
+    DarRetornoDoBackend($e->getCode(), $e->getMessage(), $e->getType(), "Atenção!", $e->getMessage(), null);
+} catch (PDOException $e){
+    DarRetornoDoBackend(500, $e->getMessage(), "error", "Erro Técnico", "Instabilidade no servidor, tente novamente mais tarde.", null);
 } catch (Throwable $e){
     DarRetornoDoBackend(500, $e->getMessage(), "error", "Erro Desconhecido", "Houve um erro inesperado, tente novamente mais tarde.", null);
 }

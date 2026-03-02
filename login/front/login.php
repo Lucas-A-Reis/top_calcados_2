@@ -37,7 +37,7 @@ require_once '../../src/database/conecta.php';
             </form>
         </div>
         <div id="form-container">
-            <form action="/../back/cadastro.php" method="POST">
+            <form action="../back/cadastro.php" method="POST">
                 <h2>Crie sua conta</h2>
                 <p>
                     Preencha os campos abaixo para ser cliente da Top Calçados.

@@ -20,7 +20,7 @@ function verificarAdmin($pdo, $email)
 function inserirUsuario($pdo, Usuario $usuario) {
 
     try{
-    $sql = 'INSERT INTO usuario (nome, email, senha, telefone)
+    $sql = 'INSERT INTO usuarios (nome, email, senha, telefone)
             VALUES (:nome, :email, :senha, :telefone)';
 
     $stmt = $pdo->prepare($sql);
@@ -35,7 +35,7 @@ function inserirUsuario($pdo, Usuario $usuario) {
         if($e->getCode() == 23000 && strpos($e->getMessage(), 'email') !== false){
             throw new AppException("Parece que o e-mail fornecido já está cadastrado no sistema, tente novamente com outro endereço de e-mail", "warning", 422);
         } else {
-            throw new AppException('Erro técnico no processamento dos dados, tente novamente mais tarde', 'error', 500);
+            throw new PDOException("Erro ao cadastrar no banco de dados: ".$e->getMessage());
         }
     }
     
