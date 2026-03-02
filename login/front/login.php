@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../includes/outros/config.php';
+require_once '../../includes/back/config.php';
 require_once '../../src/database/conecta.php';
 
 ?>
@@ -13,7 +13,7 @@ require_once '../../src/database/conecta.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Calçados - Login</title>
     <link rel="stylesheet" href="">
-    <?php include '../../includes/outros/favicons.html' ?>
+    <?php include '../../includes/front/favicons.html' ?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 

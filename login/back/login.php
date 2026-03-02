@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../includes/outros/config.php';
-require_once '../../includes/outros/appException.php';
+require_once '../../includes/back/config.php';
+require_once '../../includes/back/appException.php';
 require_once '../../src/database/conecta.php';
 require_once '../../src/helpers/funcoes_uteis.php';
 require_once '../../src/services/usuarioServico.php';

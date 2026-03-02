@@ -71,5 +71,5 @@ function DarRetornoDoBackend($code, $log, $status, $message, $redirect){
         "message" => $message,
         "redirect" => $redirect
     ]);
-    exit;
+    exit();
 }
