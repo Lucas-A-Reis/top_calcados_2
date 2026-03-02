@@ -15,12 +15,13 @@ require_once '../../src/database/conecta.php';
     <link rel="stylesheet" href="">
     <?php include '../../includes/front/favicons.html' ?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
     <main>
         <div class="form-container">
-            <form action="/../back/login.php" method="POST">
+            <form action="../back/login.php" method="POST">
                 <h2>Já sou cadastrado</h2>
 
                 <div class="campo-entrada">
@@ -70,6 +71,14 @@ require_once '../../src/database/conecta.php';
             </form>
         </div>
     </main>
+
+    <script src="../../js/sweet_alert.js"></script>
+    <script>
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', sweetAlert);
+        });
+    </script>
+
 </body>
 
 </html>
